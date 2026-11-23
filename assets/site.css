@@ -42,11 +42,20 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
 .mast nav a { white-space: nowrap; text-decoration: none; color: var(--muted); min-height: 44px; display: inline-flex; align-items: center; }
 .mast nav a:hover { color: var(--text); }
 .theme-toggle {
-  font: inherit; font-size: .85rem; color: var(--muted); background: none;
-  border: 1px solid var(--faint); border-radius: 999px; padding: .3rem .8rem; cursor: pointer;
-  min-height: 32px; white-space: nowrap;
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 44px; height: 44px; margin-right: -12px; padding: 0;
+  background: none; border: 0; cursor: pointer; color: var(--muted);
 }
-.theme-toggle:hover { color: var(--text); border-color: var(--muted); }
+.theme-toggle .dot {
+  display: block; width: 14px; height: 14px; border-radius: 50%;
+  border: 1.5px solid currentColor;
+  background: linear-gradient(90deg, currentColor 50%, transparent 50%);
+  transition: transform .5s cubic-bezier(.4, 0, .2, 1);
+}
+:root[data-theme="light"] .theme-toggle .dot { transform: rotate(180deg); }
+.theme-toggle:hover { color: var(--text); }
+.theme-toggle:hover .dot { transform: rotate(-30deg); }
+:root[data-theme="light"] .theme-toggle:hover .dot { transform: rotate(150deg); }
 
 /* Hero */
 .hero { padding: 5rem 0 4rem; }
@@ -97,4 +106,4 @@ footer a { color: var(--muted); }
   .mast { flex-direction: column; align-items: flex-start; gap: .2rem; padding-bottom: .6rem; }
   .mast nav { gap: 0 1.1rem; }
 }
-@media (prefers-reduced-motion: reduce) { body { transition: none; } }
+@media (prefers-reduced-motion: reduce) { body, .theme-toggle .dot { transition: none; } }

@@ -1,11 +1,9 @@
-// Light/dark switch. Dark is the default; a visitor's choice is remembered in this browser.
+// Color switch (a half-filled circle). Dark is the default; a visitor's choice is remembered in this browser.
 (function () {
   var root = document.documentElement;
   function current() { return root.getAttribute("data-theme") === "light" ? "light" : "dark"; }
   function label(btn) {
-    var light = current() === "light";
-    btn.textContent = light ? "Dark mode" : "Light mode";
-    btn.setAttribute("aria-pressed", light ? "true" : "false");
+    btn.setAttribute("aria-pressed", current() === "light" ? "true" : "false");
   }
   document.addEventListener("DOMContentLoaded", function () {
     var btn = document.querySelector(".theme-toggle");
