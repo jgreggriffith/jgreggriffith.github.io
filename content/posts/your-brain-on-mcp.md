@@ -12,6 +12,8 @@ Anyone who has worked with intelligence software knows that scene. Many of these
 
 This isn't because the people who design these systems are careless. An interface is a bet about which questions its users will ask. In intelligence work, the questions never hold still. A screen built for last year's problem is, by definition, a little wrong for this year's. Application designers tend to see themselves as building interfaces that bend to the needs of the analyst, when in reality it's usually the analysts who bend themselves to the constraints of the interface.
 
+{pull} It's usually the analysts who bend themselves to the constraints of the interface.
+
 But two things were true about that arrangement. First, the struggle was shared. Thousands of analysts fighting the same handful of interfaces learned the same workarounds and could teach them to each other. Second, the tool, for all its faults, carried a workflow. Somebody decided which fields mattered, which steps came first, which view opened by default. Clumsy as they can be, interfaces have helped forge a kind of institutional memory.
 
 ## The promise
@@ -32,6 +34,8 @@ Underneath all of it sits a new kind of uncertainty, one the old screens largely
 
 Instead of many users fighting the challenges of a handful of interfaces, each user now works with his own strengths and shortcomings. The result is that, just as there has been a shift of the work burden from interface to user, there's also been a similar shift of limitations: It's now far less one that's *imposed* by the application, and more one that's *exposed* by the user.
 
+{pull} Far less a limitation imposed by the application, and more one exposed by the user.
+
 Intelligence analysis is a curious hybrid of standardized tradecraft and individual judgment. On one side sit the disciplines the profession has spent decades codifying: Sourcing standards, structured analytic techniques, calibrated confidence language, the habit of separating what is known from what is assessed. On the other sits something no manual fully captures: The analyst's instinct for which detail matters, which pattern is real, which silence means something. The best analysis has always needed both. The old interfaces, for all their faults, lent structural support to the standardized half; they enforced a little of the tradecraft whether the analyst wanted it or not. Agents lean the other way. They give the individual half more room than it has ever had, along with everything that comes with it: The intuition and the blind spots, the creativity and the biases, the hard-won expertise and the unexamined habits.
 
 ## Two futures
@@ -46,6 +50,8 @@ It's also possible that we build a Tower of Babel. Thousands of analysts, each w
 - **The missing trail.** A fixed workflow leaves a record of what was done. A conversation is much harder to audit.
 
 Both futures are plausible, and they may well arrive at the same time, in the same organization. Which one dominates will depend less on the models than on whether the structure analysts used to get from their screens shows up somewhere else.
+
+{pull} Some of what we hated about the old interfaces was doing us a favor.
 
 And if the second future does arrive, if a meaningful share of analysts struggle to supply the structure their screens used to supply for them, what then? Who notices, and who fixes it? Their supervisors may be the first to see the symptoms: Assessments that don't line up, methods no one can reconstruct, confidence that outruns the evidence. The customers of that analysis, the commanders, policymakers, and executives who act on it, may notice next, and usually at a worse moment. Training programs, oversight offices, and the vendors who build the tools all have a stake as well, and each could respond differently: Retraining, new review requirements, stricter standards for what a tool must do before it's bought. The open question isn't whether the problem gets addressed. It's whether the remedy arrives by design, before the failures, or by reaction, after them.
 

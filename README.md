@@ -19,6 +19,8 @@ Every post has one permanent identifier: its **slug**, the short name in its add
   ---
   ```
 
+- **Pull quotes:** put a line like `{pull} The words to feature.` on its own, just before the
+  paragraph it should sit beside. Sides alternate automatically; aim for about one per 500 words.
 - **Build:** `python3 tools/build.py` (needs the `markdown` package). It writes
   `blog/<slug>/index.html` for every post, refreshes the lists on the home page and
   `/blog/`, and rewrites `sitemap.xml`. It plays the role of WordPress's database.

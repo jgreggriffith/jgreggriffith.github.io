@@ -32,6 +32,31 @@ AUTHOR_LINE = ("Greg Griffith is co-founder and Chief Product Officer of EdgeThe
 HOME_COUNT = 4
 
 
+PULL = re.compile(r"^\{pull\}[ \t]+(.+)$", re.M)
+
+
+def render_body(body_md):
+    """Markdown to HTML, with pull quotes.
+
+    A line of the form  {pull} Text of the quote  becomes a pull quote that floats
+    beside the paragraph that follows it. Sides alternate, starting on the right.
+    Pull quotes are hidden from screen readers, since they repeat the essay's text.
+    """
+    quotes = []
+
+    def stash(m):
+        quotes.append(m.group(1).strip())
+        return f"PULLQUOTE{len(quotes) - 1}"
+
+    html_out = markdown.markdown(PULL.sub(stash, body_md), extensions=["smarty", "sane_lists"])
+    for i, q in enumerate(quotes):
+        inner = markdown.markdown(q, extensions=["smarty"])
+        side = "r" if i % 2 == 0 else "l"
+        html_out = html_out.replace(f"<p>PULLQUOTE{i}</p>",
+                                    f'<aside class="pull {side}" aria-hidden="true">{inner}</aside>')
+    return html_out
+
+
 def parse(path):
     text = path.read_text(encoding="utf-8")
     m = re.match(r"^---\n(.*?)\n---\n(.*)$", text, re.S)
@@ -50,10 +75,10 @@ def parse(path):
     for key in ("title", "description"):  # typographic apostrophes, to match the body
         meta[key] = re.sub(r"(\w)'(\w)", "\\1\u2019\\2", meta[key])
     body_md = m.group(2)
-    words = len(re.findall(r"\b\w+\b", body_md))
+    words = len(re.findall(r"\b\w+\b", PULL.sub("", body_md)))
     meta["words"] = words
     meta["minutes"] = max(1, math.ceil(words / 230))
-    meta["html"] = markdown.markdown(body_md, extensions=["smarty", "sane_lists"])
+    meta["html"] = render_body(body_md)
     meta["d"] = date.fromisoformat(meta["date"])
     meta["updated"] = meta.get("updated") or meta["date"]
     return meta
