@@ -1,0 +1,6 @@
+# Private material that must never be published (this repository is public)
+notes/
+planning/
+drafts/
+*.private.md
+.DS_Store
