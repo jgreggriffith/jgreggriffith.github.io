@@ -1,0 +1,100 @@
+/* greggriffith.com — shared styles. Dark by default; [data-theme="light"] switches to light. */
+:root {
+  --bg: #0e1013;
+  --surface: #15181d;
+  --text: #e8eaed;
+  --muted: #8b929c;
+  --faint: #262a31;
+  --accent: #7fb0ff;
+  --font: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  color-scheme: dark;
+}
+:root[data-theme="light"] {
+  --bg: #ffffff;
+  --surface: #f5f6f7;
+  --text: #111316;
+  --muted: #61676f;
+  --faint: #e6e8eb;
+  --accent: #1f5fd1;
+  color-scheme: light;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 400 17px/1.7 var(--font);
+  -webkit-font-smoothing: antialiased;
+  transition: background-color .2s ease, color .2s ease;
+}
+a { color: var(--text); text-decoration: underline; text-decoration-color: var(--muted); text-underline-offset: .22em; text-decoration-thickness: 1px; }
+a:hover { color: var(--accent); text-decoration-color: var(--accent); }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
+.wrap { max-width: 44rem; margin: 0 auto; padding: 0 1.5rem; }
+
+/* Header */
+.mast { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: 1.6rem 0; }
+.mast .word { white-space: nowrap; font-weight: 600; letter-spacing: -.01em; text-decoration: none; color: var(--text); }
+.mast nav { display: flex; align-items: center; gap: 0 1.4rem; font-size: .92rem; }
+.mast nav a { white-space: nowrap; text-decoration: none; color: var(--muted); min-height: 44px; display: inline-flex; align-items: center; }
+.mast nav a:hover { color: var(--text); }
+.theme-toggle {
+  font: inherit; font-size: .85rem; color: var(--muted); background: none;
+  border: 1px solid var(--faint); border-radius: 999px; padding: .3rem .8rem; cursor: pointer;
+  min-height: 32px; white-space: nowrap;
+}
+.theme-toggle:hover { color: var(--text); border-color: var(--muted); }
+
+/* Hero */
+.hero { padding: 5rem 0 4rem; }
+.kicker { margin: 0 0 1.2rem; font-size: .85rem; color: var(--muted); }
+h1 { font-weight: 600; font-size: clamp(2.6rem, 7vw, 4rem); line-height: 1.05; letter-spacing: -.035em; margin: 0 0 1.5rem; }
+.lede { font-size: 1.2rem; line-height: 1.6; color: var(--text); margin: 0; max-width: 38rem; }
+.profiles { display: flex; flex-wrap: wrap; gap: 0 1.4rem; margin: 2rem 0 0; font-size: .95rem; }
+.profiles a { min-height: 44px; display: inline-flex; align-items: center; }
+
+/* Sections */
+section { padding: 3rem 0; border-top: 1px solid var(--faint); }
+section h2 { margin: 0 0 1.4rem; font-size: .85rem; font-weight: 500; color: var(--muted); letter-spacing: .02em; }
+p { margin: 0 0 1.2rem; }
+.empty { color: var(--muted); }
+
+/* Press kit */
+.label { margin: 2rem 0 .5rem; font-size: .85rem; font-weight: 500; color: var(--muted); }
+.bio { margin: 0; padding: 1.1rem 1.25rem; background: var(--surface); border-radius: 8px; }
+.bio p { margin: 0; }
+.button {
+  display: inline-flex; align-items: center; min-height: 44px; padding: 0 1.2rem;
+  background: var(--text); color: var(--bg); text-decoration: none; font-weight: 500; border-radius: 6px;
+}
+.button:hover { background: var(--accent); color: var(--bg); }
+
+/* Writing list */
+.posts { list-style: none; margin: 0; padding: 0; }
+.posts li { padding: 1.4rem 0; border-top: 1px solid var(--faint); }
+.posts li:first-child { border-top: 0; padding-top: 0; }
+.meta { margin: 0 0 .3rem; font-size: .85rem; color: var(--muted); }
+.posts h3 { font-size: 1.25rem; font-weight: 600; letter-spacing: -.015em; line-height: 1.35; margin: 0 0 .4rem; }
+.posts h3 a { text-decoration: none; }
+.posts .blurb { margin: 0; color: var(--muted); }
+
+/* Page titles (blog index, posts) */
+.page-title { font-weight: 600; font-size: clamp(2.2rem, 6vw, 3rem); line-height: 1.1; letter-spacing: -.03em; margin: 3.5rem 0 1rem; }
+.intro { color: var(--muted); margin: 0 0 3rem; }
+
+/* Footer */
+footer { padding: 2.5rem 0 4rem; border-top: 1px solid var(--faint); font-size: .88rem; color: var(--muted); }
+footer p { margin: 0 0 .3rem; }
+footer a { color: var(--muted); }
+.foot-links { display: flex; flex-wrap: wrap; gap: 0 1.2rem; margin-bottom: .8rem; }
+.foot-links a { min-height: 44px; display: inline-flex; align-items: center; }
+
+@media (max-width: 640px) {
+  .hero { padding: 3rem 0 3rem; }
+  .mast { flex-direction: column; align-items: flex-start; gap: .2rem; padding-bottom: .6rem; }
+  .mast nav { gap: 0 1.1rem; }
+}
+@media (prefers-reduced-motion: reduce) { body { transition: none; } }
