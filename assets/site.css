@@ -123,9 +123,8 @@ p { margin: 0 0 1.2rem; }
 .author { margin-top: 3rem; padding-top: 1.4rem; border-top: 1px solid var(--faint); color: var(--muted); font-size: .95rem; }
 .author p { margin: 0; }
 
-/* Featured image: wider than the text column on large screens */
-.feature { position: relative; left: 50%; transform: translateX(-50%); width: min(62rem, calc(100vw - 3rem));
-           margin: 0 0 2.8rem; }
+/* Featured image: same width as the text column */
+.feature { margin: 0 0 2.8rem; }
 .feature img { display: block; width: 100%; height: auto; border-radius: 6px; background: var(--surface); }
 
 /* Pull quotes */

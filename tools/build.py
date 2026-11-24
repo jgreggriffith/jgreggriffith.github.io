@@ -257,7 +257,7 @@ def feature_html(p):
         p["fw"], p["fh"] = im.size
     if not p.get("image_alt"):
         sys.exit(f"{p['slug']}: a featured image needs image_alt in the front matter")
-    sizes = "(min-width: 1040px) 62rem, calc(100vw - 3rem)"
+    sizes = "(min-width: 760px) 41rem, calc(100vw - 3rem)"
     return f"""
       <figure class="feature">
         <picture>
