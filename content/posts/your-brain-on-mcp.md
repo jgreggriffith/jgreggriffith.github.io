@@ -51,13 +51,13 @@ It's also possible that we build a Tower of Babel. Thousands of analysts, each w
 
 Both futures are plausible, and they may well arrive at the same time, in the same organization. Which one dominates will depend less on the models than on whether the structure analysts used to get from their screens shows up somewhere else.
 
-{pull} Some of what we hated about the old interfaces was doing us a favor.
+{pull} Some of what we say we hated about the old interfaces was at least trying to help us.
 
 And if the second future does arrive, if a meaningful share of analysts struggle to supply the structure their screens used to supply for them, what then? Who notices, and who fixes it? Their supervisors may be the first to see the symptoms: Assessments that don't line up, methods no one can reconstruct, confidence that outruns the evidence. The customers of that analysis, the commanders, policymakers, and executives who act on it, may notice next, and usually at a worse moment. Training programs, oversight offices, and the vendors who build the tools all have a stake as well, and each could respond differently: Retraining, new review requirements, stricter standards for what a tool must do before it's bought. The open question isn't whether the problem gets addressed. It's whether the remedy arrives by design, before the failures, or by reaction, after them.
 
 ## What the old screens got right by accident
 
-Here is the irony. Some of what we hated about the old interfaces was doing us a favor. Required fields forced an analyst to name a source. Fixed workflows put collection before conclusion. Default views decided what was worth looking at first. Nobody praised these things at the time. But they were tradecraft in disguise: Structure enforced by the tool, so the analyst didn't have to supply it from scratch every time.
+Here is the irony. Some of what we say we hated about the old interfaces was at least trying to help us. Required fields forced an analyst to name a source. Fixed workflows put collection before conclusion. Default views decided what was worth looking at first. Nobody praised these things at the time. But they were tradecraft in disguise: Structure enforced by the tool, so the analyst didn't have to supply it from scratch every time.
 
 When the interface goes, that structure goes with it, unless someone deliberately puts it somewhere else.
 
