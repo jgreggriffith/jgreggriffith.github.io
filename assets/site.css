@@ -42,7 +42,13 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
 .wrap { max-width: 44rem; margin: 0 auto; padding: 0 1.5rem; }
 
 /* Header */
-.mast { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: 1.6rem 0; }
+.mast { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: 1.1rem 0;
+         position: sticky; top: 0; z-index: 10; background: var(--bg);
+         box-shadow: 0 0 0 100vmax var(--bg); clip-path: inset(0 -100vmax); }
+.mast::after { content: ""; position: absolute; left: -100vmax; right: -100vmax; bottom: 0; height: 1px;
+               background: var(--faint); opacity: 0; transition: opacity .2s; }
+.scrolled .mast::after { opacity: 1; }
+section, .post-body h2 { scroll-margin-top: 5rem; }
 .mast .word { white-space: nowrap; font-weight: 500; letter-spacing: -.01em; text-decoration: none; color: var(--text); }
 .mast nav { display: flex; align-items: center; gap: 0 1.4rem; font-size: .92rem; }
 .mast nav a { white-space: nowrap; text-decoration: none; color: var(--accent); min-height: 44px; display: inline-flex; align-items: center; }
@@ -136,7 +142,8 @@ footer a { color: var(--accent); }
 
 @media (max-width: 640px) {
   .hero { padding: 3rem 0 3rem; }
-  .mast { flex-direction: column; align-items: flex-start; gap: .2rem; padding-bottom: .6rem; }
+  .mast { flex-direction: column; align-items: flex-start; gap: 0; padding: .8rem 0 .3rem; }
+  section, .post-body h2 { scroll-margin-top: 7rem; }
   .mast nav { gap: 0 1.1rem; }
 }
 @media (prefers-reduced-motion: reduce) { body, .theme-toggle .dot { transition: none; } }

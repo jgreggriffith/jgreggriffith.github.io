@@ -19,3 +19,13 @@
     });
   });
 })();
+
+// Sticky header: show a hairline under it once the page has scrolled.
+(function () {
+  var root = document.documentElement, ticking = false;
+  function update() { root.classList.toggle("scrolled", window.scrollY > 8); ticking = false; }
+  window.addEventListener("scroll", function () {
+    if (!ticking) { ticking = true; window.requestAnimationFrame(update); }
+  }, { passive: true });
+  update();
+})();
