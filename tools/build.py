@@ -75,7 +75,7 @@ def render_body(body_md, url=""):
         share = linkedin_text_url(f"\u201c{plain}\u201d\n\u2014 Greg Griffith\n\n{url}")
         inner = inner.replace("<p>", '<p aria-hidden="true">', 1)
         html_out = html_out.replace(f"<p>PULLQUOTE{i}</p>", f"""<aside class="pull {side}">{inner}
-<div class="pull-foot"><span class="pull-rule"></span><a class="pull-share" href="{esc(share)}" target="_blank" rel="noopener" aria-label="Share this quote on LinkedIn">Share</a></div></aside>""")
+<div class="pull-foot"><span class="pull-rule"></span><a class="pull-share share-popup" href="{esc(share)}" target="_blank" rel="noopener" aria-label="Share this quote on LinkedIn">Share</a></div></aside>""")
     return html_out
 
 
@@ -240,11 +240,15 @@ def post_page(p):
 
 def share_row(p, url):
     li = "https://www.linkedin.com/sharing/share-offsite/?" + urlencode({"url": url})
+    x = "https://x.com/intent/post?" + urlencode({"text": p["title"], "url": url}, quote_via=quote)
+    fb = "https://www.facebook.com/sharer/sharer.php?" + urlencode({"u": url})
     mail = "mailto:?" + urlencode({"subject": p["title"], "body": f"{p['description']}\n\n{url}"}, quote_via=quote)
     return f"""      <div class="share" id="share">
         <p class="label">Share</p>
         <ul>
-          <li><a href="{esc(li)}" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a class="share-popup" href="{esc(li)}" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a class="share-popup" href="{esc(x)}" target="_blank" rel="noopener">X</a></li>
+          <li><a class="share-popup" href="{esc(fb)}" target="_blank" rel="noopener">Facebook</a></li>
           <li><a href="{esc(mail)}">Email</a></li>
           <li hidden><button type="button" class="copy-link" data-url="{url}">Copy link</button></li>
           <li hidden><button type="button" class="native-share" data-url="{url}" data-title="{esc(p['title'])}">Share…</button></li>

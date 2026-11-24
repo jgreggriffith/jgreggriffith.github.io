@@ -35,6 +35,18 @@
   document.addEventListener("DOMContentLoaded", function () {
     var status = document.querySelector(".share-status");
     function say(msg) { if (!status) return; status.textContent = msg; setTimeout(function () { status.textContent = ""; }, 2500); }
+    // Open LinkedIn, X, and Facebook share pages in a small window; a new tab if pop-ups are blocked.
+    document.querySelectorAll("a.share-popup").forEach(function (a) {
+      a.addEventListener("click", function (e) {
+        if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+        if (window.matchMedia && window.matchMedia("(max-width: 760px)").matches) return;
+        var w = 620, h = 680;
+        var left = Math.max(0, (window.screenX || 0) + (window.outerWidth - w) / 2);
+        var top = Math.max(0, (window.screenY || 0) + (window.outerHeight - h) / 2);
+        var win = window.open(a.href, "share", "popup,width=" + w + ",height=" + h + ",left=" + left + ",top=" + top);
+        if (win) { try { win.opener = null; } catch (err) {} e.preventDefault(); }
+      });
+    });
     var copy = document.querySelector(".copy-link");
     if (copy && navigator.clipboard) {
       copy.parentNode.hidden = false;
