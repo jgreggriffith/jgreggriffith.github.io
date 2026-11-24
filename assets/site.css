@@ -44,14 +44,11 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
          padding: 0 max(1.5rem, env(safe-area-inset-right)) 0 max(1.5rem, env(safe-area-inset-left)); }
 
 /* Header */
-.mast { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: calc(1.1rem + env(safe-area-inset-top)) 0 1.1rem;
-         position: sticky; top: 0; z-index: 10; background: var(--bg);
-         /* paint the background full width and well above the header, without widening the page */
-         border-image: conic-gradient(var(--bg) 0 0) fill 0 / 0 / 100vmax 100vmax 0 100vmax; }
-.mast::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 1px;
-               border-image: conic-gradient(var(--faint) 0 0) fill 0 / 0 / 0 100vmax;
-               opacity: 0; transition: opacity .2s; }
-.scrolled .mast::after { opacity: 1; }
+.mast { position: sticky; top: 0; z-index: 10; background: var(--bg);
+         padding-top: env(safe-area-inset-top); border-bottom: 1px solid transparent; transition: border-color .2s; }
+.mast-in { max-width: 44rem; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+           padding: 1.1rem max(1.5rem, env(safe-area-inset-right)) 1.1rem max(1.5rem, env(safe-area-inset-left)); }
+.scrolled .mast { border-bottom-color: var(--faint); }
 section, .post-body h2 { scroll-margin-top: 5rem; }
 .mast .word { white-space: nowrap; font-weight: 500; letter-spacing: -.01em; text-decoration: none; color: var(--text); }
 .mast nav { display: flex; align-items: center; gap: 0 1.4rem; font-size: .92rem; }
@@ -164,7 +161,7 @@ footer a { color: var(--accent); }
 
 @media (max-width: 640px) {
   .hero { padding: 3rem 0 3rem; }
-  .mast { flex-direction: column; align-items: flex-start; gap: 0; padding: calc(.8rem + env(safe-area-inset-top)) 0 .3rem; }
+  .mast-in { flex-direction: column; align-items: flex-start; gap: 0; padding-top: .8rem; padding-bottom: .3rem; }
   section, .post-body h2 { scroll-margin-top: 7rem; }
   .mast nav { gap: 0 1.1rem; }
 }

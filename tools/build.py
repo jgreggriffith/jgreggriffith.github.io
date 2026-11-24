@@ -129,7 +129,8 @@ HEAD_COMMON = """  <script>try{if(localStorage.getItem("theme")==="light")docume
   <link rel="stylesheet" href="/assets/site.css">
   <script src="/assets/theme.js" defer></script>"""
 
-MAST = """    <header class="mast">
+MAST = """  <header class="mast">
+    <div class="mast-in">
       <a class="word" href="/">Greg Griffith</a>
       <nav aria-label="Site">
         <a href="/#about">About</a>
@@ -137,7 +138,8 @@ MAST = """    <header class="mast">
         <a href="/#press">Press kit</a>
         <button class="theme-toggle" type="button" aria-label="Invert colors" title="Invert" hidden><span class="dot" aria-hidden="true"></span></button>
       </nav>
-    </header>"""
+    </div>
+  </header>"""
 
 
 def post_page(p):
@@ -216,8 +218,8 @@ def post_page(p):
 {HEAD_COMMON}
 </head>
 <body>
-  <div class="wrap">
 {MAST}
+  <div class="wrap">
     <article class="post">
       <p class="meta"><time datetime="{p['date']}">{nice(p['d'])}</time> · {p['minutes']} min read · <a href="#share">Share</a></p>
       <h1 class="page-title">{t}</h1>
