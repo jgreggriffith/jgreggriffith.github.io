@@ -28,7 +28,7 @@ import markdown
 
 ROOT = Path(__file__).resolve().parent.parent
 SITE = "https://greggriffith.com"
-AUTHOR_LINE = ("Greg Griffith is co-founder and Chief Product Officer of EdgeTheory, a narrative intelligence "
+AUTHOR_LINE = ("Greg Griffith is co-founder and Chief Product Officer of EdgeTheory, an intelligence "
                "company that helps government and commercial organizations understand how narratives form, "
                "how they spread, and how they shape the decisions that matter most.")
 HOME_COUNT = 4
@@ -41,7 +41,7 @@ PERSON = {
     "jobTitle": "Chief Product Officer",
     "description": AUTHOR_LINE,
     "worksFor": {"@type": "Organization", "@id": "https://edgetheory.com/", "name": "EdgeTheory", "url": "https://edgetheory.com/"},
-    "knowsAbout": ["Narrative intelligence", "Cognitive warfare", "Information operations", "Product strategy",
+    "knowsAbout": ["Intelligence", "Cognitive warfare", "Information operations", "Product strategy",
                    "Product design and user experience"],
     "sameAs": [LINKEDIN],
 }
@@ -334,7 +334,7 @@ def write_feed(posts):
     <title>Greg Griffith – Writing</title>
     <link>{SITE}/blog/</link>
     <atom:link href="{SITE}/feed.xml" rel="self" type="application/rss+xml"/>
-    <description>Essays on narrative intelligence, cognitive warfare, and human nature.</description>
+    <description>Essays on intelligence, cognitive warfare, and human nature.</description>
     <language>en-us</language>
     <lastBuildDate>{built}</lastBuildDate>
 {chr(10).join(items)}
@@ -350,7 +350,7 @@ def blog_ld(posts):
         "@id": f"{SITE}/blog/#blog",
         "url": f"{SITE}/blog/",
         "name": "Writing – Greg Griffith",
-        "description": "Essays on narrative intelligence, cognitive warfare, and human nature.",
+        "description": "Essays on intelligence, cognitive warfare, and human nature.",
         "inLanguage": "en-US",
         "isPartOf": {"@id": f"{SITE}/#website"},
         "author": PERSON,
