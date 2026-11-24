@@ -144,7 +144,10 @@ MAST = """  <header class="mast">
 
 def post_page(p):
     url = f"{SITE}/blog/{p['slug']}/"
-    image = f"{SITE}/blog/{p['slug']}/og.png" if (ROOT / "blog" / p["slug"] / "og.png").exists() else f"{SITE}/og-image.png"
+    folder = ROOT / "blog" / p["slug"]
+    card = next((n for n in ("og.jpg", "og.png") if (folder / n).exists()), None)
+    image = f"{SITE}/blog/{p['slug']}/{card}" if card else f"{SITE}/og-image.png"
+    feature = feature_html(p)
     post = {
         "@type": "BlogPosting",
         "@id": url + "#post",
@@ -158,7 +161,9 @@ def post_page(p):
         "timeRequired": f"PT{p['minutes']}M",
         "inLanguage": "en-US",
         "articleSection": p["section"],
-        "image": {"@type": "ImageObject", "url": image, "width": 1200, "height": 630},
+        "image": [{"@type": "ImageObject", "url": image, "width": 1200, "height": 630}]
+                 + ([{"@type": "ImageObject", "url": f"{url}feature-2400.jpg", "width": p["fw"], "height": p["fh"],
+                      "caption": p.get("image_alt", "")}] if feature else []),
         "author": PERSON,
         "publisher": {"@id": f"{SITE}/#person"},
         "isPartOf": {"@type": "Blog", "@id": f"{SITE}/blog/#blog", "name": "Writing – Greg Griffith", "url": f"{SITE}/blog/"},
@@ -222,7 +227,7 @@ def post_page(p):
   <div class="wrap">
     <article class="post">
       <p class="meta"><time datetime="{p['date']}">{nice(p['d'])}</time> · {p['minutes']} min read · <a href="#share">Share</a></p>
-      <h1 class="page-title">{t}</h1>
+      <h1 class="page-title">{t}</h1>{feature}
       <div class="post-body">
 {p['html']}
       </div>
@@ -239,6 +244,28 @@ def post_page(p):
 </body>
 </html>
 """
+
+
+def feature_html(p):
+    """Featured image: blog/<slug>/feature-1200 and feature-2400, as .jpg and .webp.
+    Alt text comes from the post's image_alt front matter."""
+    folder = ROOT / "blog" / p["slug"]
+    if not (folder / "feature-2400.jpg").exists():
+        return ""
+    from PIL import Image
+    with Image.open(folder / "feature-2400.jpg") as im:
+        p["fw"], p["fh"] = im.size
+    if not p.get("image_alt"):
+        sys.exit(f"{p['slug']}: a featured image needs image_alt in the front matter")
+    sizes = "(min-width: 1040px) 62rem, calc(100vw - 3rem)"
+    return f"""
+      <figure class="feature">
+        <picture>
+          <source type="image/webp" srcset="feature-1200.webp 1200w, feature-2400.webp 2400w" sizes="{sizes}">
+          <img src="feature-1200.jpg" srcset="feature-1200.jpg 1200w, feature-2400.jpg 2400w" sizes="{sizes}"
+               width="{p['fw']}" height="{p['fh']}" alt="{esc(p['image_alt'])}" fetchpriority="high" decoding="async">
+        </picture>
+      </figure>"""
 
 
 def share_row(p, url):

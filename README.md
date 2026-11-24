@@ -27,7 +27,9 @@ Every post has one permanent identifier: its **slug**, the short name in its add
   `blog/<slug>/index.html` for every post, refreshes the lists on the home page and
   `/blog/`, and rewrites `sitemap.xml` and the RSS feed `feed.xml`. It warns when a title runs past
   about 60 characters or a description past about 155, the lengths search results display. It plays the role of WordPress's database.
-- **Share image (optional):** `blog/<slug>/og.png`, 1200 × 630. Without one, the site image is used.
+- **Featured image (optional):** `blog/<slug>/feature-1200` and `feature-2400`, each as `.jpg` and `.webp`
+  (metadata stripped), plus `image_alt: "…"` in the front matter. It appears under the title, wider than the text.
+- **Share image (optional):** `blog/<slug>/og.jpg` (or `og.png`), 1200 × 630. Without one, the site image is used.
 
 Never rename a published slug. If one ever must change, keep the old folder with a page that
 redirects to the new address, so existing links keep working.

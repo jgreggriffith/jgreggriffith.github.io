@@ -3,6 +3,7 @@ title: "Your Brain on MCP: Who's Ready for Total Freedom?"
 slug: your-brain-on-mcp
 date: 2026-11-23
 updated: 2026-11-24
+image_alt: "A man in a tweed jacket whose head is a rusted birdcage, its door open, as a blue bird flies out over rolling moorland."
 keywords: "Narrative intelligence, Intelligence analysis, AI agents, Model Context Protocol, Analytic tradecraft, User interface design"
 description: "AI agents and MCP are freeing analysts from clumsy interfaces. But the structure those screens provided doesn't vanish. It moves onto the analyst."
 ---
