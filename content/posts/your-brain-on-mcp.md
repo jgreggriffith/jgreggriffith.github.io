@@ -58,7 +58,7 @@ Both futures are plausible, and they may well arrive at the same time, in the sa
 
 And if the second future does arrive, if a meaningful share of analysts struggle to supply the structure their screens used to supply for them, what then? Who notices, and who fixes it? Their supervisors may be the first to see the symptoms: Assessments that don't line up, methods no one can reconstruct, confidence that outruns the evidence. The customers of that analysis, the commanders, policymakers, and executives who act on it, may notice next, and usually at a worse moment. Training programs, oversight offices, and the vendors who build the tools all have a stake as well, and each could respond differently: Retraining, new review requirements, stricter standards for what a tool must do before it's bought. The open question isn't whether the problem gets addressed. It's whether the remedy arrives by design, before the failures... or by reaction, after them.
 
-## What the old screens got right by accident
+## What the old screens got right
 
 Some of what we say we hated about the old interfaces was at least trying to help us. Required fields forced an analyst to name a source. Fixed workflows put collection before conclusion. Default views decided what was worth looking at first. Nobody praised these things at the time. But they were tradecraft in disguise: Structure enforced by the tool, so the analyst didn't have to supply it from scratch every time.
 
