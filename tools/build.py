@@ -147,6 +147,8 @@ def post_page(p):
     folder = ROOT / "blog" / p["slug"]
     card = next((n for n in ("og.jpg", "og.png") if (folder / n).exists()), None)
     image = f"{SITE}/blog/{p['slug']}/{card}" if card else f"{SITE}/og-image.png"
+    if card:  # fingerprint, so social sites refetch the card whenever it changes
+        image += "?v=" + hashlib.sha1((folder / card).read_bytes()).hexdigest()[:8]
     feature = feature_html(p)
     post = {
         "@type": "BlogPosting",

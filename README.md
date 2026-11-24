@@ -29,7 +29,8 @@ Every post has one permanent identifier: its **slug**, the short name in its add
   about 60 characters or a description past about 155, the lengths search results display. It plays the role of WordPress's database.
 - **Featured image (optional):** `blog/<slug>/feature-1200` and `feature-2400`, each as `.jpg` and `.webp`
   (metadata stripped), plus `image_alt: "…"` in the front matter. It appears under the title, at the width of the text.
-- **Share image (optional):** `blog/<slug>/og.jpg` (or `og.png`), 1200 × 630. Without one, the site image is used.
+- **Share image (optional):** `blog/<slug>/og.jpg` (or `og.png`), 1200 × 630. `python3 tools/share_card.py <slug> "<title>"`
+  makes one from the featured image: title and byline on the left, no kicker. Without one, the site image is used.
 
 Never rename a published slug. If one ever must change, keep the old folder with a page that
 redirects to the new address, so existing links keep working.
