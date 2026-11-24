@@ -219,7 +219,7 @@ def post_page(p):
       </aside>
     </article>
     <footer>
-      <p><a href="/blog/">All writing</a> · <a href="/">Home</a> · <a href="https://www.linkedin.com/in/greg-griffith-06b9541b/" rel="me">LinkedIn</a></p>
+      <p><a href="/blog/">All writing</a> · <a href="/">Home</a> · <a href="https://www.linkedin.com/in/greg-griffith-06b9541b/" rel="me">LinkedIn</a> · <a href="/feed.xml" type="application/rss+xml">RSS</a></p>
       <p>© {p['d'].year} Greg Griffith</p>
     </footer>
   </div>

@@ -14,7 +14,7 @@ Anyone who has worked with intelligence software knows that scene. Too many of t
 
 This isn't because the people who design these systems are careless. An interface is a bet about which questions its users will ask. In intelligence work, the questions never hold still. A screen built for one set of problems is, by definition, almost always a little wrong for other sets. Application designers tend to see themselves as building interfaces that bend to the needs of the analyst, when in reality it's usually the analysts who bend themselves to the constraints of the interface.
 
-{pull} It's usually the analysts who bend themselves to the constraints of the interface.
+{pull} Application designers tend to see themselves as building interfaces that bend to the needs of the analyst, when in reality it's usually the analysts who bend themselves to the constraints of the interface.
 
 But two things were true about that arrangement. First, the struggle was shared. Thousands of analysts fighting the same handful of interfaces learned the same workarounds and could teach them to each other. Second, the tool, for all its faults, supported a workflow. Somebody decided which fields mattered, which steps came first, which view opened by default. Clumsy as they can be, interfaces have helped forge a kind of institutional memory.
 
