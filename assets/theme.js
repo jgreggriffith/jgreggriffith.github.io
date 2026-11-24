@@ -29,3 +29,28 @@
   }, { passive: true });
   update();
 })();
+
+// Share row: copy link everywhere; the phone's own share sheet where it exists.
+(function () {
+  document.addEventListener("DOMContentLoaded", function () {
+    var status = document.querySelector(".share-status");
+    function say(msg) { if (!status) return; status.textContent = msg; setTimeout(function () { status.textContent = ""; }, 2500); }
+    var copy = document.querySelector(".copy-link");
+    if (copy && navigator.clipboard) {
+      copy.parentNode.hidden = false;
+      copy.addEventListener("click", function () {
+        navigator.clipboard.writeText(copy.getAttribute("data-url")).then(function () { say("Link copied."); },
+          function () { say("Couldn\u2019t copy. The address is in your browser\u2019s address bar."); });
+      });
+    }
+    var share = document.querySelector(".native-share");
+    var touch = window.matchMedia && window.matchMedia("(pointer: coarse)").matches;
+    if (share && navigator.share && touch) {
+      share.parentNode.hidden = false;
+      share.addEventListener("click", function () {
+        navigator.share({ title: share.getAttribute("data-title"), url: share.getAttribute("data-url") }).catch(function () {});
+      });
+    }
+  });
+})();
+

@@ -19,6 +19,7 @@ import json
 import math
 import re
 import sys
+from urllib.parse import quote, urlencode
 from datetime import date
 from pathlib import Path
 
@@ -48,12 +49,17 @@ PERSON = {
 PULL = re.compile(r"^\{pull\}[ \t]+(.+)$", re.M)
 
 
-def render_body(body_md):
+def linkedin_text_url(text):
+    return "https://www.linkedin.com/feed/?" + urlencode({"shareActive": "true", "text": text}, quote_via=quote)
+
+
+def render_body(body_md, url=""):
     """Markdown to HTML, with pull quotes.
 
     A line of the form  {pull} Text of the quote  becomes a pull quote that floats
     beside the paragraph that follows it. Sides alternate, starting on the right.
-    Pull quotes are hidden from screen readers, since they repeat the essay's text.
+    The quote text is hidden from screen readers, since it repeats the essay's text; each
+    quote carries a link to share it on LinkedIn.
     """
     quotes = []
 
@@ -65,8 +71,11 @@ def render_body(body_md):
     for i, q in enumerate(quotes):
         inner = markdown.markdown(q, extensions=["smarty"])
         side = "r" if i % 2 == 0 else "l"
-        html_out = html_out.replace(f"<p>PULLQUOTE{i}</p>",
-                                    f'<aside class="pull {side}" aria-hidden="true">{inner}</aside>')
+        plain = html.unescape(re.sub(r"<[^>]+>", "", inner)).strip()
+        share = linkedin_text_url(f"\u201c{plain}\u201d\n\u2014 Greg Griffith\n\n{url}")
+        inner = inner.replace("<p>", '<p aria-hidden="true">', 1)
+        html_out = html_out.replace(f"<p>PULLQUOTE{i}</p>", f"""<aside class="pull {side}">{inner}
+<div class="pull-foot"><span class="pull-rule"></span><a class="pull-share" href="{esc(share)}" target="_blank" rel="noopener" aria-label="Share this quote on LinkedIn">Share</a></div></aside>""")
     return html_out
 
 
@@ -91,7 +100,7 @@ def parse(path):
     words = len(re.findall(r"\b\w+\b", PULL.sub("", body_md)))
     meta["words"] = words
     meta["minutes"] = max(1, math.ceil(words / 230))
-    meta["html"] = render_body(body_md)
+    meta["html"] = render_body(body_md, f"{SITE}/blog/{meta['slug']}/")
     meta["keywords"] = [k.strip() for k in meta.get("keywords", "").split(",") if k.strip()]
     meta["section"] = meta.get("section") or "Essays"
     if len(meta["description"]) > 160:
@@ -209,11 +218,12 @@ def post_page(p):
   <div class="wrap">
 {MAST}
     <article class="post">
-      <p class="meta"><time datetime="{p['date']}">{nice(p['d'])}</time> · {p['minutes']} min read</p>
+      <p class="meta"><time datetime="{p['date']}">{nice(p['d'])}</time> · {p['minutes']} min read · <a href="#share">Share</a></p>
       <h1 class="page-title">{t}</h1>
       <div class="post-body">
 {p['html']}
       </div>
+{share_row(p, url)}
       <aside class="author">
         <p>{esc(AUTHOR_LINE)}</p>
       </aside>
@@ -226,6 +236,21 @@ def post_page(p):
 </body>
 </html>
 """
+
+
+def share_row(p, url):
+    li = "https://www.linkedin.com/sharing/share-offsite/?" + urlencode({"url": url})
+    mail = "mailto:?" + urlencode({"subject": p["title"], "body": f"{p['description']}\n\n{url}"}, quote_via=quote)
+    return f"""      <div class="share" id="share">
+        <p class="label">Share</p>
+        <ul>
+          <li><a href="{esc(li)}" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="{esc(mail)}">Email</a></li>
+          <li hidden><button type="button" class="copy-link" data-url="{url}">Copy link</button></li>
+          <li hidden><button type="button" class="native-share" data-url="{url}" data-title="{esc(p['title'])}">Share…</button></li>
+        </ul>
+        <p class="share-status" role="status" aria-live="polite"></p>
+      </div>"""
 
 
 def list_items(posts, tag):
@@ -264,7 +289,7 @@ def write_feed(posts):
       <pubDate>{rfc822(p['d'])}</pubDate>
       <dc:creator>Greg Griffith</dc:creator>
       <description>{esc(p['description'])}</description>{cats}
-      <content:encoded><![CDATA[{p['html']}]]></content:encoded>
+      <content:encoded><![CDATA[{re.sub(r'<div class="pull-foot">.*?</div>', '', p['html'], flags=re.S)}]]></content:encoded>
     </item>""")
     built = rfc822(posts[0]["d"]) if posts else rfc822(date.today())
     (ROOT / "feed.xml").write_text(f"""<?xml version="1.0" encoding="UTF-8"?>
