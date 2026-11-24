@@ -181,7 +181,7 @@ def post_page(p):
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>{t} – Greg Griffith</title>
   <meta name="description" content="{d}">
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
