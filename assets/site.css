@@ -44,7 +44,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
 /* Header */
 .mast { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: 1.1rem 0;
          position: sticky; top: 0; z-index: 10; background: var(--bg);
-         box-shadow: 0 0 0 100vmax var(--bg); clip-path: inset(0 -100vmax); }
+         box-shadow: 0 0 0 100vmax var(--bg); clip-path: inset(-100vmax -100vmax 0 -100vmax); }
 .mast::after { content: ""; position: absolute; left: -100vmax; right: -100vmax; bottom: 0; height: 1px;
                background: var(--faint); opacity: 0; transition: opacity .2s; }
 .scrolled .mast::after { opacity: 1; }
