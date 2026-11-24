@@ -27,6 +27,7 @@
 
 * { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; }
+html { overflow-x: clip; }
 body {
   margin: 0;
   background: var(--bg);
@@ -44,9 +45,11 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
 /* Header */
 .mast { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: 1.1rem 0;
          position: sticky; top: 0; z-index: 10; background: var(--bg);
-         box-shadow: 0 0 0 100vmax var(--bg); clip-path: inset(-100vmax -100vmax 0 -100vmax); }
-.mast::after { content: ""; position: absolute; left: -100vmax; right: -100vmax; bottom: 0; height: 1px;
-               background: var(--faint); opacity: 0; transition: opacity .2s; }
+         /* paint the background full width and well above the header, without widening the page */
+         border-image: conic-gradient(var(--bg) 0 0) fill 0 / 0 / 100vmax 100vmax 0 100vmax; }
+.mast::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 1px;
+               border-image: conic-gradient(var(--faint) 0 0) fill 0 / 0 / 0 100vmax;
+               opacity: 0; transition: opacity .2s; }
 .scrolled .mast::after { opacity: 1; }
 section, .post-body h2 { scroll-margin-top: 5rem; }
 .mast .word { white-space: nowrap; font-weight: 500; letter-spacing: -.01em; text-decoration: none; color: var(--text); }

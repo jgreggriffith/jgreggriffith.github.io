@@ -14,6 +14,7 @@ A post's permanent address is /blog/<slug>/. Never change a slug once published.
 
 Usage: python3 tools/build.py   (requires the "markdown" package)
 """
+import hashlib
 import html
 import json
 import math
@@ -337,6 +338,21 @@ def ensure_feed_link(path):
         path.write_text(s, encoding="utf-8")
 
 
+def stamp_assets():
+    """Add a content fingerprint to the stylesheet and script links on every page, so
+    browsers fetch the new file as soon as it changes instead of using a cached copy."""
+    stamps = {}
+    for name in ("site.css", "theme.js"):
+        digest = hashlib.sha1((ROOT / "assets" / name).read_bytes()).hexdigest()[:8]
+        stamps[name] = digest
+    pages = [ROOT / "index.html", ROOT / "404.html", ROOT / "blog" / "index.html"] + list((ROOT / "blog").glob("*/index.html"))
+    for page in pages:
+        s = page.read_text(encoding="utf-8")
+        for name, digest in stamps.items():
+            s = re.sub(r"/assets/" + re.escape(name) + r'(\?v=[0-9a-f]+)?"', f'/assets/{name}?v={digest}"', s)
+        page.write_text(s, encoding="utf-8")
+
+
 def main():
     posts = sorted((parse(f) for f in (ROOT / "content" / "posts").glob("*.md")), key=lambda p: p["d"], reverse=True)
     for p in posts:
@@ -361,6 +377,7 @@ def main():
         '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
         + "".join(f"  <url>\n    <loc>{u}</loc>\n    <lastmod>{d}</lastmod>\n  </url>\n" for u, d in urls)
         + "</urlset>\n", encoding="utf-8")
+    stamp_assets()
     print(f"Built {len(posts)} post(s): " + ", ".join(p["slug"] for p in posts))
 
 
