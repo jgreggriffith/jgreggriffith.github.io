@@ -36,7 +36,7 @@ Underneath all of it sits a new kind of uncertainty, one the old screens largely
 
 Instead of many users fighting the challenges of a handful of interfaces, each user now works with his own strengths and shortcomings. The result is that, just as there has been a shift of the work burden from interface to user, there's also been a similar shift of limitations: It's now far less one that's *imposed* by the application, and more one that's *exposed* by the user.
 
-{pull} Far less a limitation imposed by the application, and more one exposed by the user.
+{pull} Just as there has been a shift of the work burden from interface to user, there's also been a similar shift of limitations: It's now far less one that's imposed by the application, and more one that's exposed by the user.
 
 Intelligence analysis is a curious hybrid of standardized tradecraft and individual judgment. On one side sit the disciplines the profession has spent decades codifying: Sourcing standards, structured analytic techniques, calibrated confidence language, the habit of separating what is known from what is assessed. On the other sits something no manual fully captures: The analyst's instinct for which detail matters, which pattern is real, which silence means something. The best analysis has always needed both. The old interfaces, for all their faults, lent structural support to the standardized half; they enforced a little of the tradecraft whether the analyst wanted it or not. Agents lean the other way. They give the individual half more room than it has ever had, along with everything that comes with it: The intuition and the blind spots, the creativity and the biases, the hard-won expertise and the unexamined habits.
 

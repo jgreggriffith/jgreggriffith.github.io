@@ -35,8 +35,8 @@ body {
   -webkit-font-smoothing: antialiased;
   transition: background-color .2s ease, color .2s ease;
 }
-a { color: var(--text); text-decoration: underline; text-decoration-color: var(--muted); text-underline-offset: .22em; text-decoration-thickness: 1px; }
-a:hover { color: var(--accent); text-decoration-color: var(--accent); }
+a { color: var(--accent); text-decoration: underline; text-decoration-color: color-mix(in srgb, var(--accent) 40%, transparent); text-underline-offset: .22em; text-decoration-thickness: 1px; }
+a:hover { text-decoration-color: var(--accent); }
 a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
 
 .wrap { max-width: 44rem; margin: 0 auto; padding: 0 1.5rem; }
@@ -45,7 +45,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
 .mast { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: 1.6rem 0; }
 .mast .word { white-space: nowrap; font-weight: 500; letter-spacing: -.01em; text-decoration: none; color: var(--text); }
 .mast nav { display: flex; align-items: center; gap: 0 1.4rem; font-size: .92rem; }
-.mast nav a { white-space: nowrap; text-decoration: none; color: var(--muted); min-height: 44px; display: inline-flex; align-items: center; }
+.mast nav a { white-space: nowrap; text-decoration: none; color: var(--accent); min-height: 44px; display: inline-flex; align-items: center; }
 .mast nav a:hover { color: var(--text); }
 .theme-toggle {
   display: inline-flex; align-items: center; justify-content: center;
@@ -93,7 +93,8 @@ p { margin: 0 0 1.2rem; }
 .posts li:first-child { border-top: 0; padding-top: 0; }
 .meta { margin: 0 0 .3rem; font-size: .85rem; color: var(--muted); }
 .posts h2, .posts h3 { font-size: 1.3rem; font-weight: 500; letter-spacing: -.015em; line-height: 1.35; margin: 0 0 .4rem; }
-.posts h2 a, .posts h3 a { text-decoration: none; }
+.posts h2 a, .posts h3 a { color: var(--text); text-decoration: none; }
+.posts h2 a:hover, .posts h3 a:hover { color: var(--accent); text-decoration: underline; text-decoration-color: var(--accent); }
 .posts .blurb { margin: 0; color: var(--muted); }
 
 /* Page titles (blog index, posts) */
@@ -129,7 +130,7 @@ p { margin: 0 0 1.2rem; }
 /* Footer */
 footer { padding: 2.5rem 0 4rem; border-top: 1px solid var(--faint); font-size: .88rem; color: var(--muted); }
 footer p { margin: 0 0 .3rem; }
-footer a { color: var(--muted); }
+footer a { color: var(--accent); }
 .foot-links { display: flex; flex-wrap: wrap; gap: 0 1.2rem; margin-bottom: .8rem; }
 .foot-links a { min-height: 44px; display: inline-flex; align-items: center; }
 
