@@ -16,6 +16,8 @@ Every post has one permanent identifier: its **slug**, the short name in its add
   date: 2026-12-14            # publication date
   description: "One or two sentences for search results, link previews, and the post lists."
   updated: 2026-12-20         # optional: last substantive revision
+  keywords: "Topic one, Topic two, Topic three"   # optional: 4–8 topics; feed search data and tags
+  section: Essays             # optional: Essays (default), Narrative reads, or a series name
   ---
   ```
 
@@ -23,7 +25,8 @@ Every post has one permanent identifier: its **slug**, the short name in its add
   paragraph it should sit beside. Sides alternate automatically; aim for about one per 500 words.
 - **Build:** `python3 tools/build.py` (needs the `markdown` package). It writes
   `blog/<slug>/index.html` for every post, refreshes the lists on the home page and
-  `/blog/`, and rewrites `sitemap.xml`. It plays the role of WordPress's database.
+  `/blog/`, and rewrites `sitemap.xml` and the RSS feed `feed.xml`. It warns when a title runs past
+  about 60 characters or a description past about 155, the lengths search results display. It plays the role of WordPress's database.
 - **Share image (optional):** `blog/<slug>/og.png`, 1200 × 630. Without one, the site image is used.
 
 Never rename a published slug. If one ever must change, keep the old folder with a page that

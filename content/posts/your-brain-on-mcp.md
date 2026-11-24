@@ -2,6 +2,8 @@
 title: "Your Brain on MCP: Who's Ready for Total Freedom?"
 slug: your-brain-on-mcp
 date: 2026-11-23
+updated: 2026-11-24
+keywords: "Narrative intelligence, Intelligence analysis, AI agents, Model Context Protocol, Analytic tradecraft, User interface design"
 description: "AI agents and MCP are freeing intelligence analysts from clumsy interfaces. But the structure those screens quietly provided doesn't vanish. It moves onto the analyst, and what happens next is an open question."
 ---
 Picture an analyst at two in the morning. A crisis broke six hours ago, and the fight over what it means began minutes later. Several narrative campaigns are now maneuvering for the same ground: One probing for a weak flank in allied opinion, another laying down cover for a move that hasn't happened yet, a third trying to pin a government in place until the window to respond has closed. His commander wants a picture of that battlespace by dawn. He has the data. What he doesn't have is a screen that will show it the way tonight's question demands. The filters were built for a different mission. The map won't overlay what he needs. The export takes four clicks and a prayer. So he does what many analysts have gotten used to doing: Pulls everything into a spreadsheet and builds the answer by hand.
