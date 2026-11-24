@@ -249,7 +249,7 @@ def share_row(p, url):
           <li><a class="share-popup" href="{esc(li)}" target="_blank" rel="noopener">LinkedIn</a></li>
           <li><a class="share-popup" href="{esc(x)}" target="_blank" rel="noopener">X</a></li>
           <li><a class="share-popup" href="{esc(fb)}" target="_blank" rel="noopener">Facebook</a></li>
-          <li><a href="{esc(mail)}">Email</a></li>
+          <li><a href="{esc(mail)}" target="_blank" rel="noopener">Email</a></li>
           <li hidden><button type="button" class="copy-link" data-url="{url}">Copy link</button></li>
           <li hidden><button type="button" class="native-share" data-url="{url}" data-title="{esc(p['title'])}">Share…</button></li>
         </ul>
