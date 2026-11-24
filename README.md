@@ -27,10 +27,13 @@ Every post has one permanent identifier: its **slug**, the short name in its add
   `blog/<slug>/index.html` for every post, refreshes the lists on the home page and
   `/blog/`, and rewrites `sitemap.xml` and the RSS feed `feed.xml`. It warns when a title runs past
   about 60 characters or a description past about 155, the lengths search results display. It plays the role of WordPress's database.
-- **Featured image (optional):** `blog/<slug>/feature-1200` and `feature-2400`, each as `.jpg` and `.webp`
-  (metadata stripped), plus `image_alt: "…"` in the front matter. It appears under the title, at the width of the text.
-- **Share image (optional):** `blog/<slug>/og.jpg` (or `og.png`), 1200 × 630. `python3 tools/share_card.py <slug> "<title>"`
-  makes one from the featured image: title and byline on the left, no kicker. Without one, the site image is used.
+- **Featured image and share card (optional):** put the original image at `content/images/<slug>.jpg`
+  (or .png/.webp) and add `image_alt: "…"` to the front matter. The build makes the web-sized copies
+  (`blog/<slug>/feature-1200/2400`, .jpg and .webp, metadata stripped) and the 1200 × 630 share card
+  `blog/<slug>/og.jpg`: the photo with the title and byline over a darkened left side, no label above the
+  title. It re-renders the card whenever the image or the title changes. `card_text: right` in the front
+  matter moves the type to the right for images whose subject is on the left. See `tools/images.py`.
+  Without an image, the site's share image is used.
 
 Never rename a published slug. If one ever must change, keep the old folder with a page that
 redirects to the new address, so existing links keep working.

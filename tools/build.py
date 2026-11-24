@@ -386,6 +386,11 @@ def stamp_assets():
 
 def main():
     posts = sorted((parse(f) for f in (ROOT / "content" / "posts").glob("*.md")), key=lambda p: p["d"], reverse=True)
+    import images
+    for p in posts:
+        changed = images.update(p)
+        if changed:
+            print(f"  {p['slug']}: updated " + " and ".join(changed))
     for p in posts:
         out = ROOT / "blog" / p["slug"]
         out.mkdir(parents=True, exist_ok=True)
