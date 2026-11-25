@@ -21,6 +21,8 @@ Every post has one permanent identifier: its **slug**, the short name in its add
   ---
   ```
 
+- **RSS teaser:** put a line `{teaser}` just before the one paragraph the feed should carry. The feed
+  never includes a post's full text: just that paragraph and a link to the post.
 - **Pull quotes:** put a line like `{pull} The words to feature.` on its own, just before the
   paragraph it should sit beside. Sides alternate automatically; aim for about one per 500 words.
 - **Build:** `python3 tools/build.py` (needs the `markdown` package). It writes

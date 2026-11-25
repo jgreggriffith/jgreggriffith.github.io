@@ -47,6 +47,7 @@ PERSON = {
 }
 
 
+TEASER = re.compile(r"^\{teaser\}[ \t]*\n+((?:.+\n?)+?)(?=\n|\Z)", re.M)
 PULL = re.compile(r"^\{pull\}[ \t]+(.+)$", re.M)
 
 
@@ -98,10 +99,22 @@ def parse(path):
     for key in ("title", "description"):  # typographic apostrophes, to match the body
         meta[key] = re.sub(r"(\w)'(\w)", "\\1\u2019\\2", meta[key])
     body_md = m.group(2)
+    # Teaser for the RSS feed: the paragraph after a "{teaser}" line (Greg, 2026-11-25: the feed
+    # carries one sharp paragraph per post, never the full text).
+    t = TEASER.search(body_md)
+    if t:
+        meta["teaser_md"] = t.group(1).strip()
+        body_md = TEASER.sub(lambda mt: mt.group(1), body_md, count=1)  # keep the paragraph, drop the marker
+    else:
+        meta["teaser_md"] = meta["description"]
+        print(f"  note: {path.name}: no {{teaser}} paragraph marked; the feed will use the description",
+              file=sys.stderr)
     words = len(re.findall(r"\b\w+\b", PULL.sub("", body_md)))
     meta["words"] = words
     meta["minutes"] = max(1, math.ceil(words / 230))
     meta["html"] = render_body(body_md, f"{SITE}/blog/{meta['slug']}/")
+    meta["teaser_html"] = markdown.markdown(meta["teaser_md"], extensions=["smarty"])
+    meta["teaser_text"] = html.unescape(re.sub(r"<[^>]+>", "", meta["teaser_html"])).strip()
     meta["keywords"] = [k.strip() for k in meta.get("keywords", "").split(",") if k.strip()]
     meta["section"] = meta.get("section") or "Essays"
     if len(meta["description"]) > 160:
@@ -324,8 +337,9 @@ def write_feed(posts):
       <guid isPermaLink="true">{url}</guid>
       <pubDate>{rfc822(p['d'])}</pubDate>
       <dc:creator>Greg Griffith</dc:creator>
-      <description>{esc(p['description'])}</description>{cats}
-      <content:encoded><![CDATA[{re.sub(r'<div class="pull-foot">.*?</div>', '', p['html'], flags=re.S)}]]></content:encoded>
+      <description>{esc(p['teaser_text'])}</description>{cats}
+      <content:encoded><![CDATA[{p['teaser_html']}
+<p><a href="{url}">Read the full essay at greggriffith.com</a></p>]]></content:encoded>
     </item>""")
     built = rfc822(posts[0]["d"]) if posts else rfc822(date.today())
     (ROOT / "feed.xml").write_text(f"""<?xml version="1.0" encoding="UTF-8"?>
